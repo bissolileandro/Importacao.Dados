@@ -44,12 +44,13 @@ namespace Importacao.Dados.API
             );
             services.AddScoped<IProdutoApplication, ProdutoApplication>();
             services.AddScoped<IProdutoService, ProdutoService>();
-            services.AddScoped<IProdutoReposioy, ProdutoRepository>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Importacao.Dados.API", Version = "v1" });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,10 +11,16 @@ namespace Importacao.Dados.Service.Services
 {
     public class ProdutoService : ServiceBase<Produto>, IProdutoService
     {
-        public ProdutoService(IProdutoReposioy produtoRepository)
+        private readonly IProdutoRepository produtoRepository;
+        public ProdutoService(IProdutoRepository produtoRepository)
             :base(produtoRepository)
         {
+            this.produtoRepository = produtoRepository;
+        }
 
+        public async Task<Produto> GetById(int Id)
+        {
+            return await produtoRepository.GetById(Id);
         }
     }
 }

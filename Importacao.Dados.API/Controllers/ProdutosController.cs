@@ -1,4 +1,5 @@
 ﻿using Importacao.Dados.API.Comman;
+using Importacao.Dados.API.Models;
 using Importacao.Dados.Domain.Interfaces.Applications;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -38,18 +39,33 @@ namespace Importacao.Dados.API.Controllers
         }
 
         [HttpGet]
-        [Route("ObterDadosImportados")]
-        public async Task<IActionResult> ObterDadosImportados(IFormFile arquivoExcel)
+        [Route("GetAllImports")]
+        public async Task<IActionResult> ObterDadosImportados()
         {
-            //try
-            //{
-            //    await produtoApplication.ImportarArquivoExcel(arquivoExcel);
-            //    return Ok();
-            //}
-            //catch (Exception e)
-            //{
-            //    return BadRequest($"Erro: {e.Message}");
-            //}
+            try
+            {
+                var listaProdutos = ProdutoModel.EntityToModel(await produtoApplication.GetAllAsync());
+                return Ok(listaProdutos);
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Erro: {e.Message}");
+            }
+        }
+
+        [HttpGet]
+        [Route("GetImportById")]
+        public async Task<IActionResult> GetImportById(int id)
+        {
+            try
+            {
+                var produto = ProdutoModel.EntityToModel(await produtoApplication.GetById(id));
+                return Ok(produto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Erro: {e.Message}");
+            }
         }
     }
 }

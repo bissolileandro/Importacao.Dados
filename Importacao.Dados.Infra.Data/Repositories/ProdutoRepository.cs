@@ -9,12 +9,17 @@ using System.Threading.Tasks;
 
 namespace Importacao.Dados.Infra.Data.Repositories
 {
-    public class ProdutoRepository : RepositoryBase<Produto>, IProdutoReposioy
+    public class ProdutoRepository : RepositoryBase<Produto>, IProdutoRepository
     {
         public ProdutoRepository(ImportacaoDadosContext context)
             :base(context)
         {
 
+        }
+
+        public async Task<Produto> GetById(int Id)
+        {
+            return db.Set<Produto>().FirstOrDefault(x => x.Id == Id);
         }
     }
 }

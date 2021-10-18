@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Importacao.Dados.Domain.Interfaces.Repositories
 {
-    public interface IProdutoReposioy : IRepositoryBase<Produto>
+    public interface IProdutoRepository : IRepositoryBase<Produto>
     {
+        Task<Produto> GetById(int Id);
     }
 }

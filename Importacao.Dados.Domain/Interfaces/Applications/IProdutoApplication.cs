@@ -12,5 +12,6 @@ namespace Importacao.Dados.Domain.Interfaces.Applications
     public interface IProdutoApplication : IApplicationBase<Produto>
     {
         Task ImportarArquivoExcel(IFormFile arquivoExcel);
+        Task<Produto> GetById(int Id);
     }
 }

@@ -9,6 +9,6 @@ namespace Importacao.Dados.Domain.Interfaces.Services
 {
     public interface IProdutoService : IServiceBase<Produto>
     {
-        
+        Task<Produto> GetById(int Id);
     }
 }
