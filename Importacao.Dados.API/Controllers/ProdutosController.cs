@@ -24,17 +24,32 @@ namespace Importacao.Dados.API.Controllers
 
         [HttpPost]
         [Route("ImportarDadosExcel")]
-        public async Task<IActionResult> ImportarDadosExcel(IFormFile produtoCommand)
+        public async Task<IActionResult> ImportarDadosExcel(IFormFile arquivoExcel)
         {
             try
             {
-                await produtoApplication.ImportarArquivoExcel(produtoCommand);
+                await produtoApplication.ImportarArquivoExcel(arquivoExcel);
                 return Ok();
             }
             catch(Exception e)
             {
                 return BadRequest($"Erro: {e.Message}");
             }
+        }
+
+        [HttpGet]
+        [Route("ObterDadosImportados")]
+        public async Task<IActionResult> ObterDadosImportados(IFormFile arquivoExcel)
+        {
+            //try
+            //{
+            //    await produtoApplication.ImportarArquivoExcel(arquivoExcel);
+            //    return Ok();
+            //}
+            //catch (Exception e)
+            //{
+            //    return BadRequest($"Erro: {e.Message}");
+            //}
         }
     }
 }
